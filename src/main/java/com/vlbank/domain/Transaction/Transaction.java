@@ -1,6 +1,5 @@
 package com.vlbank.domain.Transaction;
 
-
 import com.vlbank.domain.user.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -17,21 +16,33 @@ import java.time.LocalDateTime;
 @EqualsAndHashCode(of = "id")
 
 public class Transaction {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
+    private Long id;
     private BigDecimal amount;
-
     @ManyToOne
-    @JoinColumn(name = "sender_id")
+    @JoinColumn(name="sender_id")
     private User sender;
-
     @ManyToOne
-    @JoinColumn(name = "receiver_id")
+    @JoinColumn(name="receiver_id")
     private User receiver;
-
     private LocalDateTime timestamp;
+
+    // Adicionando os métodos necessários
+    public void setSender(User sender) {
+        this.sender = sender;
+    }
+
+    public void setReceiver(User receiver) {
+        this.receiver = receiver;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public void setTimestamp(LocalDateTime timestamp) {
+        this.timestamp = timestamp;
+    }
 
 }

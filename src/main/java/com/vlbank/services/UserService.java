@@ -2,11 +2,13 @@ package com.vlbank.services;
 
 import com.vlbank.domain.user.User;
 import com.vlbank.domain.user.UserType;
+import com.vlbank.dtos.UserDTO;
 import com.vlbank.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -15,7 +17,7 @@ public class UserService {
     private UserRepository repository;
 
     public void validateTransaction(User sender, BigDecimal amount) throws Exception {
-        if(sender.getUserType() == UserType.COMMON){
+        if(sender.getUserType() == UserType.MERCHANT){
             throw new Exception("Usuario Lojista não pode fazer transações");
         }
         if(sender.getBalance().compareTo(amount) < 0){
@@ -24,6 +26,16 @@ public class UserService {
     }
     public User findUserById(Long id) throws Exception {
         return this.repository.findUserById(id).orElseThrow(() -> new Exception("Usuario Não Encontrado"));
+    }
+
+    public User createUser(UserDTO data){
+        User newUser = new User(data);
+        this.saveUser(newUser);
+        return newUser;
+    }
+
+    public List<User> getAllUsers(){
+        return this.repository.findAll();
     }
 
     public void saveUser(User user){
