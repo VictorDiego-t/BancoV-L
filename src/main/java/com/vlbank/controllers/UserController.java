@@ -15,13 +15,21 @@ public class UserController {
 
     @Autowired
     private UserService userService;
-    @PostMapping
+    @PostMapping("/create")
     public ResponseEntity<User> createUser(@RequestBody UserDTO user) {
         User newUser = userService.createUser(user);
         return new ResponseEntity<>(newUser, HttpStatus.CREATED);
     }
 
-    @GetMapping
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable Long id) throws Exception {
+        User user = this.userService.findUserById(id);
+        return new ResponseEntity<>(user, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/all")
+
     public ResponseEntity<List<User>> getAllUsers(){
         List<User> users = this.userService.getAllUsers();
         return new ResponseEntity<>(users, HttpStatus.OK);
