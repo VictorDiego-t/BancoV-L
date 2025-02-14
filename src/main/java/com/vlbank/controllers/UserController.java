@@ -27,7 +27,6 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.OK);
     }
 
-
     @GetMapping("/all")
 
     public ResponseEntity<List<User>> getAllUsers(){

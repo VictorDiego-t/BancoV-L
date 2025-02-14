@@ -5,6 +5,8 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.math.BigDecimal;
 
+import static java.lang.String.valueOf;
+
 @Entity(name = "users")
 @Table(name = "users")
 @Getter
@@ -39,9 +41,8 @@ public final class User {
         email = data.email();
         password = data.password();
         balance = data.balance();
-        userType = UserType.COMMON;
+        userType = data.userType();
     }
 
+    }
 
-
-}
