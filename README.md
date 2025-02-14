@@ -46,15 +46,5 @@ Consultar serviço autorizador externo antes de finalizar a transferência: Serv
 A operação de transferência deve ser uma transação, revertida em caso de inconsistência.
 Notificação de recebimento de pagamento: Serviço de Notificação.
 
-## Endpoint de Transferência
-POST /transfer
-Content-Type : application/json
-
-{
-  "value": 100.0,
-  "payer": 4,
-  "payee": 15
-}
-
 ## Observações
 Este projeto foi desenvolvido para fins de estudo e não deve ser usado em produção. Seu objetivo é apenas demonstrar conceitos básicos de um sistema de transações financeiras.
